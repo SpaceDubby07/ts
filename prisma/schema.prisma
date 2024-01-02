@@ -12,14 +12,14 @@ datasource db {
 }
 
 model TodoList {
-  id        Int       @id @default(autoincrement())
+  id        Int       @id @unique @default(autoincrement())
   name      String
   tasks     Task[]
   createdAt DateTime  @default(now())
 }
 
 model Task {
-  id         Int       @id @default(autoincrement())
+  id         Int       @id @unique @default(autoincrement())
   content    String
   createdAt  DateTime  @default(now())
   todoListId Int

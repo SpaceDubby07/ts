@@ -5,18 +5,34 @@ import { db } from '@/db';
 import { formatDate } from '@/lib/utils';
 
 async function page({ params }: any) {
-  const currentList = await db.todoList.findUnique({
-    where: {
-      id: Number(params.id),
-    },
-  });
+  console.log(params.id);
+  const todoListId = parseInt(params.id, 10);
+  let currentList = null; // Initialize currentList to null
+
+  if (isNaN(todoListId)) {
+    // Handle the case where params.id is not a valid number
+    console.error('Invalid todoList ID:', params.id);
+  } else {
+    currentList = await db.todoList.findUnique({
+      where: {
+        id: todoListId,
+      },
+    });
+
+    if (!currentList) {
+      // Handle the case where the TodoList with the specified ID is not found
+      console.error('TodoList not found for ID:', todoListId);
+    }
+  }
 
   // find the task lists only for the current list you are in
-  const taskList = await db.task.findMany({
-    where: {
-      todoListId: Number(params.id),
-    },
-  });
+  const taskList = todoListId
+    ? await db.task.findMany({
+        where: {
+          todoListId: todoListId,
+        },
+      })
+    : [];
 
   return (
     <div className="flex flex-col">
@@ -42,12 +58,12 @@ async function page({ params }: any) {
                 {task.content}
               </div>
               <div className="opacity-70">
-                <small>{formatDate(task.createdAt)}</small>
+                <small>{formatDate(task?.createdAt)}</small>
               </div>
             </div>
             {/* edit and delete component */}
             <div className="flex">
-              <DeleteTaskButton taskId={task.id} />
+              <DeleteTaskButton taskId={task?.id} />
             </div>
           </li>
         ))}

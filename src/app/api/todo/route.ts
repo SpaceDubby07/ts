@@ -6,8 +6,10 @@ export async function POST(req: Request, res: any) {
   try {
     // request the data
     const requestData = await req.json();
+    console.log(requestData);
     // make a prisma create call with the request data
     const newlist = await db.todoList.create({ data: requestData });
+    console.log(newlist);
 
     // if all is good, send a response with the data and status
     return NextResponse.json({ data: newlist }, { status: 200 });

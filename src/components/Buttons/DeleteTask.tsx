@@ -17,10 +17,9 @@ function DeleteTaskButton({ taskId }: { taskId: number }) {
       });
 
       if (res.status === 200) {
-        console.log('List deleted successfully');
         pop.play();
-        router.refresh();
         // You may want to update the UI to reflect the deletion
+        router.refresh();
       } else {
         console.error('Failed to delete list. Response status:', res.status);
       }

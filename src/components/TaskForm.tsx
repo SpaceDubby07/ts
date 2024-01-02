@@ -15,6 +15,12 @@ const TaskForm: React.FC<TaskFormProps> = ({ listId }) => {
   const addTask = async (e: any) => {
     e.preventDefault();
 
+    // Client-side validation for listId
+    if (typeof listId !== 'number' || isNaN(listId)) {
+      console.error('Invalid listId:', listId);
+      return;
+    }
+
     var scribble = new Howl({
       src: ['scribble.mp3'],
     });
@@ -31,8 +37,10 @@ const TaskForm: React.FC<TaskFormProps> = ({ listId }) => {
       body: JSON.stringify(task),
     });
 
-    if (res.status === 201) {
-      console.log('success');
+    if (res.status === 200) {
+      console.log('Task added successfully');
+    } else {
+      console.error('Failed to add task. Response status:', res.status);
     }
 
     scribble.play();
