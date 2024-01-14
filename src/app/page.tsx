@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { formatDate } from '@/lib/utils';
 import { db } from '@/db';
 import ListForm from '@/components/ListForm';

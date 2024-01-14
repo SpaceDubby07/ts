@@ -1,3 +1,4 @@
+'use server';
 import DeleteTaskButton from '@/components/Buttons/DeleteTask';
 import HomeButton from '@/components/Buttons/Home';
 import TaskForm from '@/components/TaskForm';
