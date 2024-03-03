@@ -5,15 +5,16 @@ import { Howl } from 'howler';
 function HomeButton() {
   const router = useRouter();
   const goHome = () => {
-    var pop = new Howl({
-      src: ['/door.mp3'],
-    });
+    // var pop = new Howl({
+    //   src: ['/door.mp3'],
+    // });
 
-    pop.play();
+    // pop.play();
+    router.push('/');
 
-    setTimeout(() => {
-      router.push('/');
-    }, 200);
+    // setTimeout(() => {
+    //   router.push('/');
+    // }, 200);
   };
 
   return (

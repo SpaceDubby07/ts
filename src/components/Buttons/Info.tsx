@@ -7,14 +7,15 @@ function InfoButton({ listId }: { listId: number }) {
   const router = useRouter();
 
   const routeHandler = () => {
-    var inspire = new Howl({
-      src: ['inspiration.wav'],
-    });
+    // var inspire = new Howl({
+    //   src: ['inspiration.wav'],
+    // });
+    router.push(`/task/${listId}`);
 
-    inspire.play();
-    setTimeout(() => {
-      router.push(`/task/${listId}`);
-    }, 300);
+    // inspire.play();
+    // setTimeout(() => {
+    //   router.push(`/task/${listId}`);
+    // }, 300);
   };
 
   return (
