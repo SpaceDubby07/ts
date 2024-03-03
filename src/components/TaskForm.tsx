@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Plus } from '@phosphor-icons/react';
-import { Howl } from 'howler';
 
 interface TaskFormProps {
   listId?: number | null;
@@ -20,10 +19,6 @@ const TaskForm: React.FC<TaskFormProps> = ({ listId }) => {
       console.error('Invalid listId:', listId);
       return;
     }
-
-    var scribble = new Howl({
-      src: ['scribble.mp3'],
-    });
 
     // Update the field name to match the Prisma schema
     const task = {
@@ -43,7 +38,6 @@ const TaskForm: React.FC<TaskFormProps> = ({ listId }) => {
       console.error('Failed to add task. Response status:', res.status);
     }
 
-    scribble.play();
     setTaskName('');
     router.refresh();
   };

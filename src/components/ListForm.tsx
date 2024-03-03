@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Plus } from '@phosphor-icons/react';
-import { Howl } from 'howler';
 
 const ListForm = () => {
   const router = useRouter();
@@ -10,10 +9,6 @@ const ListForm = () => {
 
   const addList = async (e: any) => {
     e.preventDefault();
-
-    var scribble = new Howl({
-      src: ['scribble.mp3'],
-    });
 
     // Update the field name to match the Prisma schema
     const list = {
@@ -30,8 +25,6 @@ const ListForm = () => {
       console.log('success');
     }
 
-    scribble.play();
-    setListName('');
     router.refresh();
   };
 

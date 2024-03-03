@@ -1,23 +1,18 @@
 'use client';
 import { Trash } from '@phosphor-icons/react'; // we need to render the icons server side, otherwise the file ends /react
 import { useRouter } from 'next/navigation';
-import { Howl } from 'howler';
 
 function DeleteTaskButton({ taskId }: { taskId: number }) {
   const router = useRouter();
 
   const deleteItemHandler = async (e: any) => {
     e.preventDefault();
-    var pop = new Howl({
-      src: ['pop.wav'],
-    });
     try {
       const res = await fetch(`/api/task/${taskId}`, {
         method: 'DELETE',
       });
 
       if (res.status === 200) {
-        pop.play();
         // You may want to update the UI to reflect the deletion
         router.refresh();
       } else {
